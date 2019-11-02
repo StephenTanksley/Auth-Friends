@@ -25,6 +25,7 @@ const Signin = (props) => {
             .post('/login', data)
             .then(response => {
                 console.log(response)
+                localStorage.setItem('token', response.data.payload)
             })
             .catch(err => {
                 setError(err.response.data)
