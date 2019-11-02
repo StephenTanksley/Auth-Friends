@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 //I'll be moving this call to a util.
-import axios from 'axios'
+import { axiosWithAuth as axios } from '../utils/api'
 
 const Signin = (props) => {
     const [error, setError] = useState()
@@ -21,8 +21,8 @@ const Signin = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios
-            .post('http://localhost:5000/api/login', data)
+        axios()
+            .post('/login', data)
             .then(response => {
                 console.log(response)
             })
@@ -45,7 +45,7 @@ const Signin = (props) => {
             />
 
         <input 
-            type="password"
+            type="current-password"
             name="password"
             value={data.password}
             onChange={handleChange}
