@@ -6,8 +6,10 @@ import { Container } from '../Styled'
 
 const FriendsList = () => {
     const [friends, setFriends] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        setLoading(false)
         axiosWithAuth()
         .get('/friends')
         .then(res => setFriends(res.data))
@@ -15,7 +17,14 @@ const FriendsList = () => {
     }, [])
 
     return (
+        
         <Container className = "friends-list">
+
+            {loading ? (
+                <div className="spinner"><p>Loading...</p></div>
+            ) : ( null 
+            )}
+            
             {friends && friends.map(item => {
                 return (
                 <Friend friend = {item} key = {item.id} />

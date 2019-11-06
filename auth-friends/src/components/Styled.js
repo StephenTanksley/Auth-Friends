@@ -11,7 +11,6 @@ export const Card = styled.div`
     padding: .5rem;
     margin: 1rem;
     width: 30%;
-
 `
 
 export const Container = styled.div`

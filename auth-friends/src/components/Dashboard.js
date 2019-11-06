@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import FriendsList from './Friends/FriendsList';
+import FriendForm from './Friends/FriendForm'
 
 const Dashboard = () => {
 
@@ -12,6 +13,7 @@ const Dashboard = () => {
         {/* <div className="account-row">Name: {user.name}</div> */}
         {/* <div className="account-row">Email: {user.email}</div> */}
 
+        <FriendForm />
         <FriendsList />
 
         </>
