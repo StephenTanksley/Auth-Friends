@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 
 //I'll be moving this call to a util.
-import { axiosWithAuth as axios } from '../utils/api'
+import { axiosWithAuth as axios } from '../../utils/api'
 
-const Signin = (props) => {
+const Login = (props) => {
     const [error, setError] = useState()
     const [data, setData] = useState({
         username: '',
@@ -33,7 +33,7 @@ const Signin = (props) => {
             .then(response => {
                 console.log(response)
                 localStorage.setItem('token', response.data.payload)
-                props.history.push('/account')
+                props.history.push('/dashboard')
             })
             .catch(err => {
                 setError(err)
@@ -42,6 +42,9 @@ const Signin = (props) => {
     }
  
     return (
+    <div>
+        <h3>Please sign in</h3>
+
        <form onSubmit={handleSubmit}>
            {/* If there's an error, render a div that shows it. */}
            {error && <div className="error">{error}</div>}
@@ -67,7 +70,8 @@ const Signin = (props) => {
             Sign-In
         </button>
        </form> 
+    </div>
     )
 }
 
-export default Signin
+export default Login

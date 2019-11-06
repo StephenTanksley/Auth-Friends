@@ -1,5 +1,9 @@
 import axios from 'axios'
 
+export const getToken = () => {
+    return localStorage.getItem('token')
+}
+
 export const axiosWithoutAuth = () => {
 
     return (
@@ -10,13 +14,12 @@ export const axiosWithoutAuth = () => {
 }
 
 export const axiosWithAuth = () => {
-    const token = localStorage.getItem('token')
-
+    
     return(
         axios.create({
             baseURL: 'http://localhost:5000/api',
             headers: {
-                "Authorization" : `${token}`,
+                "Authorization" : getToken(),
                 "Content-Type" : 'application/json'
             }
         })
