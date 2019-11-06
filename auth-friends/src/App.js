@@ -3,6 +3,8 @@ import { Route, Link } from 'react-router-dom'
 
 //component imports
 import Signin from './components/signin'
+import Account from './components/Account'
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
 function App() {
@@ -10,12 +12,13 @@ function App() {
     <div className="App">
       
       <nav>
-        <Link to='/signin'>Sign In</Link>
         <Link to='/'>Home</Link>
+        <Link to='/signin'>Sign In</Link>
+        <Link to='/account'>My Account</Link>
       </nav>
 
       <Route exact path='/signin' component={Signin} />
-
+      <ProtectedRoute exact path='/account' component={Account} />
     </div>
   );
 }
