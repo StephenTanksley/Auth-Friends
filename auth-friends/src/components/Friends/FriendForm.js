@@ -2,18 +2,12 @@ import React, {useState} from 'react'
 
 import { axiosWithAuth } from '../../utils/api';
 
-const FriendForm = () => {
+const FriendForm = ({friends, setFriends}) => {
     const [newFriend, setNewFriend] = useState({
         name: '',
         age: '',
         email: ''
     })
-    
-    const initialState = {
-        name: '',
-        age: '',
-        email: ''
-    }
 
     const handleChange = e => {
         setNewFriend({
@@ -26,9 +20,9 @@ const FriendForm = () => {
         e.preventDefault()
         axiosWithAuth()
         .post('/friends', newFriend)
-        .then(response => setNewFriend({
-            ...newFriend,
-            initialState}))
+        .then(response => {
+            setFriends(response.data)
+        })  
         .catch(error => console.log(error))
     }
 

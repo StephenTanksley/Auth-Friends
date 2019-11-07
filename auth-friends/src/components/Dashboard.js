@@ -10,10 +10,7 @@ const Dashboard = () => {
         <>
         <h1>My Account</h1>
 
-        {/* <div className="account-row">Name: {user.name}</div> */}
-        {/* <div className="account-row">Email: {user.email}</div> */}
 
-        <FriendForm />
         <FriendsList />
 
         </>

@@ -1,35 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../../utils/api';
-import Friend from './Friend'
 
+//import components
+import Friend from './Friend'
+import FriendForm from './FriendForm';
+
+//import styles
 import { Container } from '../Styled'
 
 const FriendsList = () => {
     const [friends, setFriends] = useState([]);
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        setLoading(false)
+        // setLoading(false)
         axiosWithAuth()
         .get('/friends')
-        .then(res => setFriends(res.data))
+        .then(response => setFriends(response.data))
         .catch(error => console.log(error))
     }, [])
 
-    return (
-        
-        <Container className = "friends-list">
 
-            {loading ? (
+
+    return (
+    <div>
+        <FriendForm setFriends={setFriends}/>
+        <Container className = "friends-list">
+            {/* Would like to implement a spinner while the component is loading. */}
+            {/* {loading ? (
                 <div className="spinner"><p>Loading...</p></div>
-            ) : ( null 
-            )}
+                ) : ( null 
+                    )} */}
             
             {friends && friends.map(item => {
                 return (
-                <Friend friend = {item} key = {item.id} />
-                )})}
+                    <Friend friend = {item} key = {item.id} />
+                    )})}
         </Container>
+    </div>
     )
 }
 
